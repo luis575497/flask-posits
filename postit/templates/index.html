@@ -1,0 +1,76 @@
+{% extends 'base.html'%}
+
+{% block content%}
+
+
+{% with errors = get_flashed_messages(category_filter=["error"]) %}
+{% if errors %}
+    {%- for msg in errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ msg }}
+    </div>
+    {% endfor -%}
+{% endif %}
+{% endwith %}
+
+{% with menssages = get_flashed_messages(category_filter=["success"])%}
+{% if menssages %}
+    {%- for mens in menssages%}
+    <div class="alert alert-success" role="alert">
+        {{mens}}
+    </div>
+    {% endfor %}
+{% endif %}
+{% endwith%}
+
+
+<div class="row pt-4">
+
+<div class="col-md-6">
+    <div class="card card-body" style="width: 35rem;">
+      <div class="form-group">
+         <form method="POST" action="/new_posit">
+            {{ form.hidden_tag() }}
+            {{ form.title.label(class="form-label pt-1")}}
+            {{ form.title(class="form-control pt-1") }}
+            {{ form.body.label(class="form-label pt-1")}}
+            {{ form.body(class="form-control pt-1",rows="8") }}
+            {{ form.category.label(class="form-label mt-1") }}
+            {{ form.category(class="form-control") }}
+            {{ form.color.label(class="form-label mt-1") }}
+            {{ form.color(class="form-control") }}
+            {{ form.submit(class="btn btn-primary btn-lg btn-block mt-2 w-100") }}
+        </form>
+      </div>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <h3>Cree sus notas con posit</h3>
+    <p>Diseñe y cree facilmente notas al estilo posit para que recuerde su tareas más importantes. Puede personalizarlas al asignarle categorias y cambiar su color</p>
+</div>
+
+</div>
+
+
+
+
+<div class="row pt-4">
+{% for posit in posits %}
+<div class="col-md-4 pt-4">
+    <div class="card {{posit.color}}" style="width: auto;">
+     <div class="card-body">    
+        <span class="badge rounded-pill bg-dark position-absolute top-0 end-0"> {{posit.category}} </span>
+        <h4 class="card-title text-white">{{ posit.title }}</h4>
+        <p class="card-text text-white">{{ posit.body }}</p><br>
+        <p align="right" class="card-text text-white"><em>Fecha: {{posit.date}}</em></p>
+        <a href="/posit_edit/{{ posit.posit_id }}" class="card-link text-white">Modificar </a>
+        <a href="/delete_posit/{{ posit.posit_id }}" class="card-link text-white">Eliminar </a>
+    </div>
+</div>
+</div>
+{% endfor %}
+</div>
+
+
+{% endblock %}

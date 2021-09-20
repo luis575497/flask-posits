@@ -1,0 +1,28 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<div class="row justify-content-center">
+  <div class="col-md-6">
+  <div class="card card-body">
+    <form method="post">
+        {{form.hidden_tag()}}
+        {{form.title.label(class="form-label")}}
+        {{form.title(class="form-control mt-0")}}
+        <br>
+        {{form.body.label(class="form-label")}}
+        {{form.body(class="form-control", rows="10")}}
+        <br>
+        {{ form.category.label(class="form-label pt-1") }}
+        {{ form.category(class="form-control mt-1") }}
+        {{ form.color.label(class="form-label") }}
+        {{ form.color(class="form-control mt-1") }}
+        <br>
+        {{ form.submit(class="btn btn-primary w-25 btn-block") }}
+        <a href="/" class="btn w-25 btn-danger"> Cancelar </a>
+        </div>
+    </form>
+  </div>
+  </div>
+</div>
+{% endblock %}

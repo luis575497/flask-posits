@@ -9,7 +9,6 @@ TESTING = True
 DEBUG = True
 FLASK_ENV = 'development'
 SECRET_KEY = environ.get('SECRET_KEY')
-DATABASE_USER = 'root'
-DATABASE_PASSWORD = 'root'
-DATABASE_HOST = 'localhost'
-DATABASE = 'postit'
+SQLALCHEMY_DATABASE_URI = "postgresql://posit:posit@localhost:5432/posit"
+SQLALCHEMY_TRACK_MODIFICATIOS = False
+
