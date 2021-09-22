@@ -1,3 +1,7 @@
+"""
+Se definen todas las rutas que manejara el servidor para las diferentes peticiones
+"""
+
 from flask import Flask, g , url_for ,render_template, request, redirect, flash
 import datetime
 from werkzeug.security import check_password_hash, generate_password_hash

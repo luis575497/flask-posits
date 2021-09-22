@@ -1,10 +1,11 @@
-from . import db
-from flask_login import UserMixin
-import datetime
-
 """
 Se definen las tablas principales y se establece la relacion entre los usuarios y los posits que crean
 """
+
+from flask_login import UserMixin
+from . import db
+import datetime
+
 
 
 class Posit(db.Model):

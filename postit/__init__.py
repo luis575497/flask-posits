@@ -1,3 +1,10 @@
+"""
+Aplicacion creada con flask que permite conectarse a una base de datos y crear notas personales
+Para la gestión de la base de datos se utiliza Flask-SQLAlchemy
+Para la gestión de usuarios se emplea Flash-login
+Se define una función de para borrar y crear las tablas de la base de datos con el commando flask init-db
+"""
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import click
@@ -39,6 +46,4 @@ def create_app(test_config=None):
         from . import routes
 
         return app
-
-
 
