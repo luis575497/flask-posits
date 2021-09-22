@@ -1,3 +1,7 @@
+"""
+Creación de las clases para definir cada formulario que se utiliza en la aplicación
+"""
+
 from flask_wtf import FlaskForm
 from wtforms import Form, IntegerField, SelectField, SubmitField, StringField, PasswordField
 from wtforms.validators import Required , DataRequired, InputRequired, Email, EqualTo, Length
