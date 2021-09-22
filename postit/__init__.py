@@ -11,6 +11,7 @@ login_manager = LoginManager()
 @with_appcontext
 def init_db_command():
     """Crear las tablas de la base de datos"""
+
     db.drop_all()
     click.echo("Borrando datos anteriores")
     db.create_all()
@@ -18,6 +19,7 @@ def init_db_command():
 
 def init_app(app):
     """Añadir a la aplicación los comandos """
+
     app.cli.add_command(init_db_command)
 
 

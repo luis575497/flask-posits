@@ -18,6 +18,7 @@ def index():
     GET  request - Construye la página en base a los datos del usuario y el formulario definido para la creación de posits
                    Envía los datos del formulario para crear un nuevo posit a la dirección: /new_posit
     """
+
     form = forms.posit()
 
     return render_template('index.html',user=current_user.name,form=form, posits = current_user.posits)
@@ -30,6 +31,7 @@ def new_posit():
 
     POST request - Se crea un posit vinculado al usuario que lo crea
     """
+
     form = forms.posit()
     if request.method == 'POST' and form.validate_on_submit():
         new_posit = Posit(
@@ -55,6 +57,7 @@ def posit_edit(id):
     GET  request - Se obtiene el id del posit desde la url y con el id se consulta a la base de datos para obtener todos los datos del posit, posteriormente se renderiza la página con el formulario que tiene los datos del posit
     POST request - Se validan los campos del formulario del posit, se establecen los nuevos valores para el posit según el id obtenido de la url
     """
+
     form = forms.posit()
     posit = Posit.query.get(id)
 
@@ -80,6 +83,7 @@ def delete_posit(id):
     """
     Se recibe el id del posit enviado mediante la url y se elimina el posit, para finalmente redirigir a la página principal
     """
+
     posit_id = Posit.query.get(id)
     db.session.delete(posit_id)
     db.session.commit()
@@ -94,6 +98,7 @@ def signup():
     GET request sirve la pagina de registro de usuario
     POST request valida el formulario de registro de usuario
     """
+
     form = forms.signup_form()
 
     if request.method == 'POST' and form.validate_on_submit():
@@ -125,6 +130,7 @@ def login():
     GET  request - se verifica que si el usuario ya se encuentra con la sesion activa para dirigirlo a la página principal, de no estar logueado se renderiza la página con el formulario de inicio de sesión
     POST request - se verifica que el formulario tenga los datos correctos, consutla a la base de datos por la existencia de un usuario con el correo electrónico envíado con el usuario y en caso de tener exito se verifica la contraseña. Si la contraseña es correcta se carga al usuario en el LoginManager y se redirige a la página principal
     """
+
     if current_user.is_authenticated:
         return redirect(url_for('index'))
 
@@ -148,12 +154,14 @@ def login():
 @login_required
 def logout():
     """Salir de la sesion de usuario."""
+
     logout_user()
     return redirect(url_for('login'))
 
 @login_manager.user_loader
 def load_user(user_id):
     """Revisar si el ausuario esta logueado en cada pagina."""
+
     if user_id is not None:
         return User.query.get(user_id)
 
