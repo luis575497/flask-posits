@@ -1,2 +1,3 @@
 venv/**/*
-instance/.env
+instance/.env 
+postit/__pycache__/**/*
