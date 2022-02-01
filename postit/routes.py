@@ -67,7 +67,7 @@ def posit_edit(id):
 
     if request.method == 'GET':
         form.title.data , form.body.data = posit.title , posit.body
-        form.category.process_data(datos.category)
+        form.category.process_data(posit.category)
         form.color.process_data(posit.color)
         return render_template('posit_edit.html', form=form)
 
